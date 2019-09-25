@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 
 // Components
 import SearchBar from "./SearchBar";
@@ -11,7 +12,7 @@ class BookList extends Component {
 
   filterBooks = query => {
     query = query.toLowerCase();
-    let filteredBooks = this.props.books.filter(book =>
+    let filteredBooks = this.state.filteredBooks.filter(book =>
       book.title.toLowerCase().includes(query)
     );
     this.setState({ filteredBooks });
@@ -38,5 +39,10 @@ class BookList extends Component {
     );
   }
 }
+const mapStateToProps = state => {
+  return {
+    books: state.rootBooks.books
+  };
+};
 
-export default BookList;
+export default connect(mapStateToProps)(BookList);

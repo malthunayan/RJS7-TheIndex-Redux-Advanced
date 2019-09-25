@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-
+import { connect } from "react-redux";
 // Components
 import AuthorCard from "./AuthorCard";
 import SearchBar from "./SearchBar";
@@ -11,7 +11,7 @@ class AuthorsList extends Component {
 
   filterAuthors = query => {
     query = query.toLowerCase();
-    let filteredAuthors = this.props.authors.filter(author => {
+    let filteredAuthors = this.state.filterAuthors.filter(author => {
       return `${author.first_name} ${author.last_name}`
         .toLowerCase()
         .includes(query);
@@ -34,4 +34,10 @@ class AuthorsList extends Component {
   }
 }
 
-export default AuthorsList;
+const mapStateToProps = state => {
+  return {
+    authors: state.rootAuthors.authors
+  };
+};
+
+export default connect(mapStateToProps)(AuthorsList);

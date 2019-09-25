@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+// import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
 class AuthorCard extends Component {
@@ -26,5 +27,11 @@ class AuthorCard extends Component {
     );
   }
 }
+
+// const mapStateToProps = state => {
+//   return {
+//     authors: state.rootAuthors.authors
+//   };
+// };
 
 export default AuthorCard;
